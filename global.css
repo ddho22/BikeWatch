@@ -15,7 +15,16 @@ body {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: subtle shadow for effect */
   border-radius: 8px; /* Optional: rounded corners */
 }
-
+body {
+    font: 100%/1.5 system-ui, sans-serif;
+    display: flex;
+    flex-flow: column;
+    max-width: 80em;
+    min-height: 100vh;
+    box-sizing: border-box;
+    margin: auto;
+    padding: 1em;
+  }
 #map svg {
     opacity: 70%;
     position:absolute;
@@ -25,8 +34,68 @@ body {
     pointer-events: none;
   }
 
-.circle {
-    opacity: 70%;
-    color: steelblue;
-    stroke: white;
+circle {
+    pointer-events: auto;
+    border: white ;
+
+fill: var(--color);
+}
+
+#map circle, .legend > div{
+    --color-departures: steelblue;
+    --color-arrivals: darkorange;
+    --color: color-mix(
+      in oklch,
+      var(--color-departures) calc(100% * var(--departure-ratio)),
+      var(--color-arrivals)
+    );
+}
+
+.legend {
+    display: flex;
+    gap: 1px;
+    margin-block: 1em;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    overflow: hidden;
+    font-size: 0.9em;
+    text-align: center;
+  }
+  
+  .legend > div {
+    flex: 1;
+    padding: 0.5em 1em;
+  }
+
+  .legend {
+    display: flex;
+    align-items: center;
+    gap: 1.5em;
+    margin-block: 1em;
+    font-size: 0.9em;
+    border: none;
+  }
+  
+  .legend > span {
+    font-weight: bold;
+  }
+  
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 0.4em;
+    position: relative;
+  }
+  
+  .legend-item::before {
+    content: "";
+    width: 1em;
+    height: 1em;
+    border-radius: 0.2em;
+    background-color: var(--color);
+    flex-shrink: 0;
+  }
+  
+  .legend-item::after {
+    content: attr(data-label);
   }
