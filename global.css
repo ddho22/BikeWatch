@@ -99,3 +99,18 @@ fill: var(--color);
   .legend-item::after {
     content: attr(data-label);
   }
+
+#timetime {
+  width: 5em;
+
+}
+
+  #time-slider {
+    width: 400px;
+  }
+
+
+  label {
+    display: flex;
+    gap: 10px;
+  }
